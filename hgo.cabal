@@ -1,0 +1,49 @@
+name:                hgo
+version:             0.1.0.0
+synopsis:            The game of Go
+description:         Multiplayer interactive Go game
+homepage:            https://github.com/wchargin/hgo
+license:             MIT
+license-file:        LICENSE
+author:              William Chargin
+maintainer:          wchargin@gmail.com
+copyright:           per MIT
+category:            Games
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+tested-with:         GHC == 7.10.2
+
+library
+  default-language:    Haskell2010
+  ghc-options:         -Wall -fno-warn-name-shadowing
+  hs-source-dirs:      src
+  exposed-modules:     GoGame
+                     , GoBoard
+  build-depends:       base >= 4.7 && < 5
+                     , containers
+
+executable hgo
+  default-language:    Haskell2010
+  ghc-options:         -Wall -fno-warn-name-shadowing -threaded -rtsopts -with-rtsopts=-N
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  build-depends:       base
+                     , hgo
+                     , containers
+
+test-suite spec
+  default-language:    Haskell2010
+  ghc-options:         -Wall -fno-warn-name-shadowing
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , hgo
+                     , hspec
+                     , QuickCheck
+                     , containers
+
+source-repository head
+  type:     git
+  location: https://github.com/wchargin/hgo
